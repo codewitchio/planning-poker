@@ -1,0 +1,25 @@
+{
+  "name": "planning-poker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aryuko/planning-poker.git"
+  },
+  "author": "Aryuko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aryuko/planning-poker/issues"
+  },
+  "homepage": "https://github.com/Aryuko/planning-poker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.9.0",
+    "webpack": "^4.40.2"
+  }
+}
