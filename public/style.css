@@ -16,9 +16,15 @@
     align-items: center;
 }
 
+.header a {
+    text-decoration: none;
+    color: black;
+}
+
 .content {
     min-width: 1000px;
     margin: auto;
+    padding: 0 10px
 }
 
 @media only screen and (max-width: 1000px) {
