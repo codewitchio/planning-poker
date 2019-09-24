@@ -2,10 +2,12 @@
   "name": "planning-poker",
   "version": "0.0.1",
   "description": "",
-  "main": "src/app.js",
+  "main": "src/backend/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/backend/app.js",
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development --watch"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,15 @@
   },
   "homepage": "https://github.com/Aryuko/planning-poker#readme",
   "dependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "express": "^4.17.1",
     "react": "^16.9.0",
-    "webpack": "^4.40.2"
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
   }
 }
