@@ -2,17 +2,24 @@ import React from 'react'
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
+import Frontpage from './components/Frontpage.jsx'
+
 class App extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render () {
-        console.log('Index.jsx render')
         return (
-            <div>
-                Hello React World!
-            </div>
+            <React.Fragment>
+                <div className="header"><span>Planning Poker</span></div>
+                <div className="content">
+                    <Switch>
+                        <Route exact path="/" render={(props) => <Frontpage {...props} />} />
+                        
+                    </Switch>
+                </div>
+            </React.Fragment>
         )
     }
 }
@@ -24,5 +31,5 @@ const routes = (
 )
 
 render(
-    (routes), document.getElementById('page')
+    (routes), document.getElementById('react-app')
 )

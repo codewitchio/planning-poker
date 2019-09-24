@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+}
+
+#react-app {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 50px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.content {
+    min-width: 1000px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    .content {
+        width: 100%;
+        min-width: initial;
+    }
+}
