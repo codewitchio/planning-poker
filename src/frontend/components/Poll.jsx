@@ -10,8 +10,17 @@ class Poll extends React.Component {
     
     render () {
         return (
-            <div>
-                Poll #{code}
+            <div className="poll">
+                <div className="poll-header">
+                    <span className="poll-id">Poll {code}</span>
+                    <span className="poll-title">Poll title goes here</span>
+                </div>
+                <div className="poll-results">
+                    Poll results go here
+                </div>
+                <div className="poll-input">
+                    Poll entry goes here
+                </div>
             </div>
         )
     }

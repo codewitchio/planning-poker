@@ -1,3 +1,4 @@
+/* General */
 * {
     margin: 0;
 }
@@ -5,6 +6,7 @@
 #react-app {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .header {
@@ -24,7 +26,13 @@
 .content {
     min-width: 1000px;
     margin: auto;
-    padding: 0 10px
+    padding: 0 10px;
+    display: flex;
+    flex-grow: 1;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -33,3 +41,24 @@
         min-width: initial;
     }
 }
+
+/* Poll page */
+
+.poll {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.poll-header {
+    height: 30px;
+}
+.poll-results {
+    flex-grow: 2;
+}
+.poll-input {
+    flex-grow: 1;
+}
+
+/* Front page */

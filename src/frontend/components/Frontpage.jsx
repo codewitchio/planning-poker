@@ -19,7 +19,7 @@ class Frontpage extends React.Component {
 
     render () {
         return (
-            <div>
+            <div clasname="frontpage">
                 <label className="code-label">Enter a poll code</label>
                 <input type="number" value={this.state.inputValue} onChange={this.handleInputChange} />
                 <button onClick={this.handleGoClick}>Go</button>
