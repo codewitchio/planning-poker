@@ -70,5 +70,30 @@ app.get('/api/poll/:id?', (req, res) => {
     }
 
 })
+app.get('/api/poll/vote/:poll_id?/:value?', (req, res) => {
+    if(req.params.poll_id && req.params.value) {
+        db.addVote(req.params.poll_id, req.params.value, (data) => {
+            if (data) {
+                res.send({
+                    success: true,
+                    errormessage: false,
+                    data: data
+                })
+            } else {
+                res.send({
+                    success: false,
+                    errormessage: 'error',
+                    data: {}
+                })
+            }
+        })
+    } else {
+        res.send({
+            success: false,
+            errormessage: 'Missing parameters',
+            data: false
+        })
+    }
+})
 app.get('*', (req, res) => res.sendFile(path.join(publicPath, '/index.html')))
 http.listen(port, () => console.log('listening on port', port))

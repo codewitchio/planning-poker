@@ -38,7 +38,7 @@ class Database {
 
     createPoll(name, callback) {
         db.serialize(() => {
-            db.run('INSERT INTO poll(name) VALUES(?)', [name], function (err) {
+            db.run(`INSERT INTO poll(name) VALUES(${name})`, [name], function (err) {
                 if(err) { console.log(err.message) }
                 else if (this.lastID) {
                     console.log(`poll '${name}' with id ${this.lastID} created`)
@@ -46,9 +46,23 @@ class Database {
                         poll_id: this.lastID,
                         name: name
                     })
-                } else {
-                    callback(false)
-                }
+                } else { callback(false) }
+            })
+        })
+    }
+
+    addVote(poll_id, value, callback) {
+        db.serialize(() => {
+            db.run(`INSERT INTO poll_vote(poll_id, value) VALUES(${poll_id}, ${value})`, function (err) {
+                if(err) { console.log(err.message) }
+                else if (this.lastID) {
+                    console.log(`vote for poll ${poll_id} with value '${value}' with id ${this.lastID} added`)
+                    callback({
+                        vote_id: this.lastID,
+                        poll_id: poll_id,
+                        value: value
+                    })
+                } else { callback(false) }
             })
         })
     }
