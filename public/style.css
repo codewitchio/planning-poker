@@ -54,7 +54,7 @@
 .poll-header {
     height: 30px;
 }
-.poll-results {
+.poll-votes {
     flex-grow: 2;
 }
 .poll-input {

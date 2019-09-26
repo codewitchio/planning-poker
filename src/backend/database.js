@@ -9,22 +9,29 @@ class Database {
     setupTables() {
         db.serialize(() => {
             db.run('CREATE TABLE IF NOT EXISTS poll (poll_id INTEGER PRIMARY KEY, name TEXT)')
-            db.run('CREATE TABLE IF NOT EXISTS poll_votes (vote_id INTEGER PRIMARY KEY, poll_id INTEGER, value INTEGER)')
+            db.run('CREATE TABLE IF NOT EXISTS poll_vote (vote_id INTEGER PRIMARY KEY, poll_id INTEGER, value INTEGER)')
         })
     }
 
     getPoll(id, callback) {
         db.serialize(() => {
-            db.get('SELECT poll_id, name FROM poll WHERE poll_id = ' + id, function (err, row) {
+            db.get(`SELECT poll_id, name FROM poll WHERE poll_id = ${id}`, function (err, poll) {
                 if(err) { console.log(err.message) }
-                else if(row) {
-                    callback({
-                        poll_id: row.poll_id,
-                        name: row.name
+                else if(poll) {
+                    db.all(`SELECT vote_id, value FROM poll_vote WHERE poll_id = ${id}`, function (err, votes) {
+                        if(err) {
+                            console.log(err.message)
+                            callback(false)
+                        }
+                        else if (votes){
+                            callback({
+                                poll_id: poll.poll_id,
+                                name: poll.name,
+                                votes: votes
+                            })
+                        } else { callback(false) }
                     })
-                } else {
-                    callback(false)
-                }
+                } else { callback(false) }
             })
         })
     }

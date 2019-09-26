@@ -17,7 +17,7 @@ class App extends React.Component {
                 <div className="content">
                     <Switch>
                         <Route exact path="/" render={(props) => <Frontpage {...props} />} />
-                        <Route exact path="/:code(\d+)" render={(props) => <Poll {...props} />} />
+                        <Route exact path="/:id(\d+)" render={(props) => <Poll {...props} />} />
                     </Switch>
                 </div>
             </React.Fragment>

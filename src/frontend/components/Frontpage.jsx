@@ -28,7 +28,7 @@ class Frontpage extends React.Component {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(`poll '${json.data.name}' with id ${json.data.poll_id} created`)
-                    this.props.history.push(json.data.poll_id) //TODO: Fix this, it doesn't seem to work
+                    this.props.history.push('/' + json.data.poll_id)
                 }
             })
         })
