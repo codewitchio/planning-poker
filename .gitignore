@@ -62,3 +62,6 @@ typings/
 
 # dist
 public/react-bundle.js
+
+# db
+db.db
