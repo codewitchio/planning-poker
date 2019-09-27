@@ -29,8 +29,8 @@ app.get('/api/poll/:id', (req, res) => {
     })
 
 })
-app.get('/api/poll/vote/:poll_id/:value', (req, res) => {
-    db.addVote(req.params.poll_id, req.params.value, (data) => {
+app.get('/api/poll/vote/:poll_id/:value/:name', (req, res) => {
+    db.addVote(req.params.poll_id, req.params.value, req.params.name, (data) => {
         dbResponse(data, res)
     })
 })

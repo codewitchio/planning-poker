@@ -13,14 +13,15 @@ class Poll extends React.Component {
             loading: true,
             error: false,
             reveal: false,
-            hasVoted: false
+            myVote: false
         }
 
-        this.getPoll(id)
+        this.getPoll()
+        this.addVote = this.addVote.bind(this)
     }
 
-    getPoll(id) {
-        return fetch('/api/poll/' + id).then((response) => {
+    getPoll() {
+        return fetch(`/api/poll/${id}`).then((response) => {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
@@ -31,6 +32,19 @@ class Poll extends React.Component {
                     })
                 } else {
                     this.setState({loading: false, error: true})
+                    console.log(json)
+                }
+            })
+        })
+    }
+
+    addVote(value, name) {
+        fetch(`/api/poll/vote/${id}/${value}/${name}`).then((response) => {
+            response.json().then((json) => {
+                if(json.success) {
+                    console.log(json)
+                    this.setState({myVote: json.data.vote_id})
+                } else {
                     console.log(json)
                 }
             })
@@ -68,7 +82,7 @@ class Poll extends React.Component {
                     </div>
                     <div className="poll-input">
                         <h3>Add vote</h3>
-                        <VoteSelector hasVoted={this.state.hasVoted} />
+                        <VoteSelector hasVoted={this.state.hasVoted} addVote={this.addVote} />
                     </div>
                 </div>
             )

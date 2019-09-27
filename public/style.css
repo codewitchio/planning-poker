@@ -5,6 +5,7 @@
 body {
     background-color: #202124;
     color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 #react-app {
@@ -55,6 +56,12 @@ h3 .subtitle {
     font-weight: 400;
 }
 
+.shadow {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
+}
+
 /* Poll page */
 
 .poll {
@@ -72,11 +79,16 @@ h3 .subtitle {
 }
 .poll-input {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .voteselector-cardcontainer {
     display: flex;
     justify-content: space-around;
+    width: 100%;
 }
 .voteselector-votecard {
     height: 150px;

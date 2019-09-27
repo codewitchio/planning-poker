@@ -9,7 +9,7 @@ class Database {
     setupTables() {
         db.serialize(() => {
             db.run('CREATE TABLE IF NOT EXISTS poll (poll_id INTEGER PRIMARY KEY, name TEXT)')
-            db.run('CREATE TABLE IF NOT EXISTS poll_vote (vote_id INTEGER PRIMARY KEY, poll_id INTEGER, value INTEGER)')
+            db.run('CREATE TABLE IF NOT EXISTS poll_vote (vote_id INTEGER PRIMARY KEY, poll_id INTEGER, value INTEGER, name TEXT)')
         })
     }
 
@@ -51,16 +51,17 @@ class Database {
         })
     }
 
-    addVote(poll_id, value, callback) {
+    addVote(poll_id, value, name, callback) {
         db.serialize(() => {
-            db.run(`INSERT INTO poll_vote(poll_id, value) VALUES(${poll_id}, ${value})`, function (err) {
+            db.run(`INSERT INTO poll_vote(poll_id, value, name) VALUES(${poll_id}, ${value}, '${name}')`, function (err) {
                 if(err) { console.log(err.message) }
                 else if (this.lastID) {
-                    console.log(`vote for poll ${poll_id} with value '${value}' and id ${this.lastID} added`)
+                    console.log(`vote for poll ${poll_id} with value '${value}', name '${name}', and id ${this.lastID} added`)
                     callback({
                         vote_id: this.lastID,
                         poll_id: poll_id,
-                        value: value
+                        value: value,
+                        name: name
                     })
                 } else { callback(false) }
             })
