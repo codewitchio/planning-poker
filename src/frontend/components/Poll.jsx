@@ -7,7 +7,7 @@ class Poll extends React.Component {
 
         id = this.props.match.params.id
 
-        this.state = {loading: true, reveal: false}
+        this.state = {loading: true, error: false, reveal: false}
         this.getPoll(id)
     }
 
@@ -22,7 +22,8 @@ class Poll extends React.Component {
                         votes: json.data.votes
                     })
                 } else {
-                    // Print some error
+                    this.setState({loading: false, error: true})
+                    console.log(json)
                 }
             })
         })
@@ -33,6 +34,12 @@ class Poll extends React.Component {
             return (
                 <div className="poll">
                     <div className="poll-loading">Loading poll {id}...</div>
+                </div>
+            )
+        } else if (this.state.error) {
+            return (
+                <div className="poll">
+                    <div className="poll-error">Error fetching poll {id}, please make sure the link was entered correctly</div>
                 </div>
             )
         } else {
