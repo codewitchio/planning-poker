@@ -54,10 +54,7 @@ h3 {
     text-align: center;
     margin-bottom: 10px;
 }
-h3 .subtitle {
-    font-size: 14px;
-    font-weight: 400;
-}
+
 
 .shadow {
     -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
@@ -98,6 +95,9 @@ input[type="text"], input[type="number"] {
     font-size: 16;
     cursor: pointer;
 }
+.button:hover {
+    background-color: #414244;
+}
 
 .card {
     height: 150px;
@@ -115,7 +115,7 @@ input[type="text"], input[type="number"] {
     align-items: center;
     
     font-size: 40;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* Poll page */
@@ -128,7 +128,13 @@ input[type="text"], input[type="number"] {
 }
 
 .poll-header {
-    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.poll-header .poll-title {
+    font-size: 28;
+    /* font-weight: 700; */
 }
 .poll-votes {
     flex-grow: 2;
@@ -164,9 +170,9 @@ input[type="text"], input[type="number"] {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    cursor: pointer;
 }
 .voteselector-votecard:hover {
-    cursor: pointer;
     background-color: #414244;
 }
 .voteselector-cancel label {

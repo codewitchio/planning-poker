@@ -20,6 +20,7 @@ class Poll extends React.Component {
         this.getPoll()
         this.addVote = this.addVote.bind(this)
         this.deleteVote = this.deleteVote.bind(this)
+        this.toggleReveal = this.toggleReveal.bind(this)
     }
 
     getPoll() {
@@ -65,6 +66,10 @@ class Poll extends React.Component {
             })
         })
     }
+
+    toggleReveal() {
+        this.setState({reveal: !this.state.reveal})
+    }
     
     render () {
         if (this.state.loading) {
@@ -83,8 +88,9 @@ class Poll extends React.Component {
             return (
                 <div className="poll">
                     <div className="poll-header">
-                        
-                        <h3 className="poll-title"> {this.state.title} <span className="subtitle">({id})</span></h3>
+                        <button className="button" onClick={this.toggleReveal}>{this.state.reveal ? 'Hide' : 'Show'}</button>
+                        <span className="poll-title"> {this.state.title}</span>
+                        <button className="button">Copy Link</button> {/* TODO: Add functionality */}
                     </div>
                     <div className="poll-votes">
                         <VoteResults votes={this.state.votes} myVote={this.state.myVote} reveal={this.state.reveal}/>
