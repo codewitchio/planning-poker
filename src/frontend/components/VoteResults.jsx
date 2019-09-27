@@ -6,9 +6,7 @@ class VoteResults extends React.Component {
     }
 
     buildCard (vote) {
-        // TODO: Add highlight on id = myVote.id
-        // let secondClass = (value === this.state.valueSelected ? 'highlight' : this.state.valueSelected == false ? '' : 'dim')
-        let secondClass = ''
+        let secondClass = (this.props.myVote === false ? '' :( this.props.myVote.vote_id == vote.vote_id ? 'highlight' : ''))
         return (
             <div className="voteresults-cardcombo" key={"resultcard-" + vote.vote_id}>
                 <div className={`card shadow ${secondClass}`}>

@@ -46,7 +46,7 @@ class Poll extends React.Component {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
-                    this.setState({myVote: {id: json.data.vote_id, value: value, name: name}})
+                    this.setState({myVote: {vote_id: json.data.vote_id, value: value, name: name}})
                 } else {
                     console.log(json)
                 }
@@ -88,9 +88,9 @@ class Poll extends React.Component {
             return (
                 <div className="poll">
                     <div className="poll-header">
-                        <button className="button" onClick={this.toggleReveal}>{this.state.reveal ? 'Hide' : 'Show'}</button>
+                        <button className="button shadow" onClick={this.toggleReveal}>{this.state.reveal ? 'Hide' : 'Show'}</button>
                         <span className="poll-title"> {this.state.title}</span>
-                        <button className="button">Copy Link</button> {/* TODO: Add functionality */}
+                        <button className="button shadow">Copy Link</button> {/* TODO: Add functionality */}
                     </div>
                     <div className="poll-votes">
                         <VoteResults votes={this.state.votes} myVote={this.state.myVote} reveal={this.state.reveal}/>

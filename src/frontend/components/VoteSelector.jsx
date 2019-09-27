@@ -30,8 +30,7 @@ class VoteSelector extends React.Component {
         this.props.addVote(this.state.valueSelected, this.state.nameInput)
     }
     retractVote() {
-        console.log('user wants to retract vote')
-        this.props.deleteVote(this.props.myVote.id)
+        this.props.deleteVote(this.props.myVote.vote_id)
     }
 
     buildCard (value) {
@@ -49,7 +48,7 @@ class VoteSelector extends React.Component {
                 <React.Fragment>
                     <h3>Vote successful!</h3>
                     <label>You voted: {this.props.myVote.value}</label>
-                    <button className="button" onClick={this.retractVote}>Retract vote</button>
+                    <button className="button shadow" onClick={this.retractVote}>Retract vote</button>
                 </React.Fragment>
             )
         } else {
