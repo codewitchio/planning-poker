@@ -10,8 +10,8 @@ class VoteResults extends React.Component {
         // let secondClass = (value === this.state.valueSelected ? 'highlight' : this.state.valueSelected == false ? '' : 'dim')
         let secondClass = ''
         return (
-            <div className="voteresults-cardcombo">
-                <div className={`card shadow ${secondClass}`} key={"resultcard-" + vote.value}>
+            <div className="voteresults-cardcombo" key={"resultcard-" + vote.vote_id}>
+                <div className={`card shadow ${secondClass}`}>
                     <span>{vote.value}</span>
                 </div>
                 <span>{vote.name}</span>
@@ -20,16 +20,27 @@ class VoteResults extends React.Component {
     }
 
     render () {
-        let cards = []
-        for(let v of this.props.votes) {
-            cards.push(this.buildCard(v))
-            // cards.push(<div key={`votecard-{v.vote_id}`}>{v.value}</div>)
+        if(this.props.reveal) {
+            let cards = []
+            for(let v of this.props.votes) {
+                cards.push(this.buildCard(v))
+            }
+            return (
+                <div className="voteresults-cardcontainer">
+                    {cards}
+                </div>
+            )
+        } else {
+            return (
+                <div className="voteresults-cardcontainer">
+                    {this.buildCard({
+                        id: -1,
+                        value: '?',
+                        name: `${Object.keys(this.props.votes).length} hidden votes`
+                    })}
+                </div>
+            )
         }
-        return (
-            <div className="voteresults-cardcontainer">
-                {cards}
-            </div>
-        )
     }
 }
 
