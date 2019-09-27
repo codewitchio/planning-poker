@@ -43,7 +43,7 @@ class Poll extends React.Component {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
-                    this.setState({myVote: json.data.vote_id})
+                    this.setState({myVote: {id: json.data.vote_id, value: value}})
                 } else {
                     console.log(json)
                 }
@@ -81,8 +81,7 @@ class Poll extends React.Component {
                         </ul>
                     </div>
                     <div className="poll-input">
-                        <h3>Add vote</h3>
-                        <VoteSelector hasVoted={this.state.hasVoted} addVote={this.addVote} />
+                        <VoteSelector myVote={this.state.myVote} addVote={this.addVote} />
                     </div>
                 </div>
             )

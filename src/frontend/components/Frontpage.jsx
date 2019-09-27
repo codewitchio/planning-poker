@@ -39,14 +39,19 @@ class Frontpage extends React.Component {
         return (
             <div clasname="frontpage">
                 <div className="frontpage-existing-poll">
-                    <label className="code-label">Enter a poll code</label>
-                    <input type="number" value={this.state.code} onChange={this.handleCodeInputChange} />
-                    <button onClick={this.goToPoll}>Go</button>
+                    {/* <label className="code-label">Enter a poll code</label> */}
+                    <div className="shadow">
+                        <input type="number" value={this.state.code} onChange={this.handleCodeInputChange} placeholder="Enter a poll code"/>
+                        <button className="submit" onClick={this.goToPoll}>Go</button>
+                    </div>
                 </div>
+                <br/>
                 <div className="frontpage-create-poll">
-                    <label className="name-label">Or create a new poll by entering a name</label>
-                    <input type="text" value={this.state.name} onChange={this.handleNameInputChange} />
-                    <button onClick={this.createPoll}>Go</button>
+                    {/* <label className="name-label">Or create a new poll by entering a name</label> */}
+                    <div className="shadow">
+                        <input type="text" value={this.state.name} onChange={this.handleNameInputChange} placeholder="Or create a new poll by entering a name" />
+                        <button className="submit" onClick={this.createPoll}>Go</button>
+                    </div>
                 </div>
             </div>
         )

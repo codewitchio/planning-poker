@@ -35,6 +35,9 @@ body {
     display: flex;
     flex-grow: 1;
 
+    align-items: center;
+    justify-content: center;
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -62,6 +65,40 @@ h3 .subtitle {
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
+input[type="text"], input[type="number"] {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px 0 0 5px;
+    background-color: #2d2e30;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16;
+    width: 360px;
+}
+.submit { /* Designed to sit right next to an input field */
+    border: 1px solid #e0e0e0;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #2d2e30;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16;
+    cursor: pointer;
+}
+.submit:disabled {
+    color: #6d6d6d;
+    cursor: not-allowed;
+}
+
+.button {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #2d2e30;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16;
+    cursor: pointer;
+}
+
 /* Poll page */
 
 .poll {
@@ -83,6 +120,9 @@ h3 .subtitle {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    border-top: 1px solid white;
+    min-height: 300px;
+    max-height: 300px;
 }
 
 .voteselector-cardcontainer {
@@ -112,9 +152,15 @@ h3 .subtitle {
     cursor: pointer;
     background-color: #414244;
 }
+.voteselector-cancel label {
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+}
 
 .highlight {
     background-color: #414244;
+    border: 1px solid #86ff86;
 }
 .dim {
     position: relative;

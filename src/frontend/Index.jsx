@@ -13,7 +13,7 @@ class App extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <div className="header"><Link to="/">Planning Poker</Link></div>
+                <div className="header"><h2><Link to="/">Planning Poker</Link></h2></div>
                 <div className="content">
                     <Switch>
                         <Route exact path="/" render={(props) => <Frontpage {...props} />} />

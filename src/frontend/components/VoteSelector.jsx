@@ -13,6 +13,7 @@ class VoteSelector extends React.Component {
         this.handleCardClick = this.handleCardClick.bind(this)
         this.handleNameInputChange = this.handleNameInputChange.bind(this)
         this.goClick = this.goClick.bind(this)
+        this.retractVote = this.retractVote.bind(this)
     }
 
     handleCardClick(value) {
@@ -28,6 +29,9 @@ class VoteSelector extends React.Component {
     goClick() {
         this.props.addVote(this.state.valueSelected, this.state.nameInput)
     }
+    retractVote() {
+        console.log('user wants to retract vote')
+    }
 
     buildCard (value) {
         let secondClass = (value === this.state.valueSelected ? 'highlight' : this.state.valueSelected == false ? '' : 'dim')
@@ -39,23 +43,35 @@ class VoteSelector extends React.Component {
     }
 
     render () {
-        let cards = []
-        for(let value of voteOptions) {
-            cards.push(this.buildCard(value))
+        if (this.props.myVote != false) { // User has already voted
+            return (
+                <React.Fragment>
+                    <h3>Vote successful!</h3>
+                    <label>You voted: {this.props.myVote.id}</label>
+                    <button className="button" onClick={this.retractVote}>Retract vote</button>
+                </React.Fragment>
+            )
+        } else {
+            let cards = []
+            for(let value of voteOptions) {
+                cards.push(this.buildCard(value))
+            }
+            let disabled = (!this.state.nameInput || this.state.valueSelected === false)
+            return (
+                <React.Fragment>
+                    <h3>Add vote</h3>
+                    <div className="voteselector-cardcontainer">
+                        {cards}
+                    </div>
+                    <div className="voteselector-input">
+                        <div className="shadow">
+                            <input type="text" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Enter your name" />
+                            <button className="submit" onClick={this.goClick} disabled={disabled}>Go</button>
+                        </div>
+                    </div>
+                </React.Fragment>
+            )
         }
-        let disabled = (!this.state.nameInput || this.state.valueSelected === false)
-        return (
-            <React.Fragment>
-                <div className="voteselector-cardcontainer">
-                    {cards}
-                </div>
-                <div className="voteselector-input">
-                    <label>Enter your name</label>
-                    <input type="text" value={this.state.nameInput} onChange={this.handleNameInputChange} />
-                    <button onClick={this.goClick} disabled={disabled}>Go</button>
-                </div>
-            </React.Fragment>
-        )
     }
 }
 
