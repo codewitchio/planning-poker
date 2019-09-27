@@ -4,6 +4,7 @@ import VoteSelector from './VoteSelector.jsx'
 import VoteResults from './VoteResults.jsx'
 
 var id
+var socket
 class Poll extends React.Component {
     constructor(props) {
         super(props)
@@ -18,9 +19,40 @@ class Poll extends React.Component {
         }
 
         this.getPoll()
+        
+        socket = io()
+        socket.open()
+
+        // Listens for vote additions to update result list
+        socket.on('addVote', (data) => {
+            if(data.poll_id == id) {
+                let updatedVotes = this.state.votes.concat({
+                    vote_id: data.vote_id,
+                    value: data.value,
+                    name: data.name
+                })
+                this.setState({
+                    votes: updatedVotes
+                })
+            }
+        })
+        // Listens for vote deletions to update result list
+        socket.on('deleteVote', (data) => {
+            let updatedVotes = [...this.state.votes]
+            let index = updatedVotes.findIndex((element) => { return element.vote_id == data.vote_id })
+            if (index != -1) {
+                updatedVotes.splice(index, 1)
+                this.setState({votes: updatedVotes})
+            }
+        })
+
         this.addVote = this.addVote.bind(this)
         this.deleteVote = this.deleteVote.bind(this)
         this.toggleReveal = this.toggleReveal.bind(this)
+    }
+
+    componentWillUnmount() {
+        socket.close()
     }
 
     getPoll() {

@@ -8,7 +8,8 @@
 const path      = require('path')
 const express	= require('express')
 const app		= express()
-const http      = require('http').createServer(app);
+const http      = require('http').createServer(app)
+const io        = require('socket.io')(http)
 
 const port      = 3000
 
@@ -16,6 +17,12 @@ const Database = require('./database.js')
 const db = new Database()
 
 const publicPath = path.join(__dirname, '../../public')
+
+var clientCount = 0
+io.on('connection', (socket) => {
+    console.log(`Client connected, serving ${++clientCount} total connection(s)`)
+    socket.on('disconnect', () => { console.log(`Client disconnected, serving ${--clientCount} total connection(s)`) })
+})
 
 app.use(express.static(publicPath))
 app.get('/api/poll/create/:name', (req, res) => {
@@ -32,11 +39,13 @@ app.get('/api/poll/:id', (req, res) => {
 app.get('/api/poll/vote/:poll_id/:value/:name', (req, res) => {
     db.addVote(req.params.poll_id, req.params.value, req.params.name, (data) => {
         dbResponse(data, res)
+        if(data) {io.emit('addVote', data)}
     })
 })
 app.get('/api/poll/delete_vote/:vote_id', (req, res) => {
     db.deleteVote(req.params.vote_id, (data) => {
         dbResponse(data, res)
+        if(data) {io.emit('deleteVote', data)}
     })
 })
 app.get('/api/*', (req, res) => { res.send('Invalid endpoint') })
