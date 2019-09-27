@@ -18,6 +18,7 @@ class Poll extends React.Component {
 
         this.getPoll()
         this.addVote = this.addVote.bind(this)
+        this.deleteVote = this.deleteVote.bind(this)
     }
 
     getPoll() {
@@ -43,7 +44,20 @@ class Poll extends React.Component {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
-                    this.setState({myVote: {id: json.data.vote_id, value: value}})
+                    this.setState({myVote: {id: json.data.vote_id, value: value, name: name}})
+                } else {
+                    console.log(json)
+                }
+            })
+        })
+    }
+
+    deleteVote(id) {
+        fetch(`/api/poll/delete_vote/${id}`).then((response) => {
+            response.json().then((json) => {
+                if(json.success) {
+                    console.log(json)
+                    this.setState({myVote: false})
                 } else {
                     console.log(json)
                 }
@@ -81,7 +95,7 @@ class Poll extends React.Component {
                         </ul>
                     </div>
                     <div className="poll-input">
-                        <VoteSelector myVote={this.state.myVote} addVote={this.addVote} />
+                        <VoteSelector myVote={this.state.myVote} addVote={this.addVote} deleteVote={this.deleteVote} />
                     </div>
                 </div>
             )

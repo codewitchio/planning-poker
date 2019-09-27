@@ -34,6 +34,11 @@ app.get('/api/poll/vote/:poll_id/:value/:name', (req, res) => {
         dbResponse(data, res)
     })
 })
+app.get('/api/poll/delete_vote/:vote_id', (req, res) => {
+    db.deleteVote(req.params.vote_id, (data) => {
+        dbResponse(data, res)
+    })
+})
 app.get('/api/*', (req, res) => { res.send('Invalid endpoint') })
 app.get('*', (req, res) => res.sendFile(path.join(publicPath, '/index.html')))
 http.listen(port, () => console.log('listening on port', port))

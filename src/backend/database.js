@@ -67,6 +67,20 @@ class Database {
             })
         })
     }
+
+    deleteVote(vote_id, callback) {
+        db.serialize(() => {
+            db.run(`DELETE FROM poll_vote WHERE vote_id = ${vote_id}`, function (err) {
+                if(err) { console.log(err.message) }
+                else if (this.changes) {
+                    console.log(`vote with id ${vote_id} deleted`)
+                    callback({
+                        vote_id: vote_id
+                    })
+                } else { callback(false) }
+            })
+        })
+    }
 }
 
 module.exports = Database

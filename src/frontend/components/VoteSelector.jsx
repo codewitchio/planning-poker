@@ -31,6 +31,7 @@ class VoteSelector extends React.Component {
     }
     retractVote() {
         console.log('user wants to retract vote')
+        this.props.deleteVote(this.props.myVote.id)
     }
 
     buildCard (value) {
