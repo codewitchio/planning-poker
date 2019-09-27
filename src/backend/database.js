@@ -18,7 +18,7 @@ class Database {
             db.get(`SELECT poll_id, name FROM poll WHERE poll_id = ${id}`, function (err, poll) {
                 if(err) { console.log(err.message) }
                 else if(poll) {
-                    db.all(`SELECT vote_id, value FROM poll_vote WHERE poll_id = ${id}`, function (err, votes) {
+                    db.all(`SELECT vote_id, value, name FROM poll_vote WHERE poll_id = ${id}`, function (err, votes) {
                         if(err) {
                             console.log(err.message)
                             callback(false)

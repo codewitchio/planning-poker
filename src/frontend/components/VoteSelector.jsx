@@ -37,7 +37,7 @@ class VoteSelector extends React.Component {
     buildCard (value) {
         let secondClass = (value === this.state.valueSelected ? 'highlight' : this.state.valueSelected == false ? '' : 'dim')
         return (
-            <div className={`voteselector-votecard shadow ${secondClass}`} key={"votecard-" + value} onClick={ () => this.handleCardClick(value)}>
+            <div className={`voteselector-votecard card shadow ${secondClass}`} key={"votecard-" + value} onClick={ () => this.handleCardClick(value)}>
                 <span>{value}</span>
             </div>
         )
@@ -48,7 +48,7 @@ class VoteSelector extends React.Component {
             return (
                 <React.Fragment>
                     <h3>Vote successful!</h3>
-                    <label>You voted: {this.props.myVote.id}</label>
+                    <label>You voted: {this.props.myVote.value}</label>
                     <button className="button" onClick={this.retractVote}>Retract vote</button>
                 </React.Fragment>
             )

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import VoteSelector from './VoteSelector.jsx'
+import VoteResults from './VoteResults.jsx'
 
 var id
 class Poll extends React.Component {
@@ -79,10 +80,6 @@ class Poll extends React.Component {
                 </div>
             )
         } else {
-            let votes = []
-            for(let v of this.state.votes) {
-                votes.push(<li key={v.vote_id}>{v.value}</li>)
-            }
             return (
                 <div className="poll">
                     <div className="poll-header">
@@ -90,9 +87,7 @@ class Poll extends React.Component {
                         <h3 className="poll-title"> {this.state.title} <span className="subtitle">({id})</span></h3>
                     </div>
                     <div className="poll-votes">
-                        <ul>
-                            {votes}
-                        </ul>
+                        <VoteResults votes={this.state.votes} myVote={this.state.myVote} reveal={this.state.reveal}/>
                     </div>
                     <div className="poll-input">
                         <VoteSelector myVote={this.state.myVote} addVote={this.addVote} deleteVote={this.deleteVote} />
