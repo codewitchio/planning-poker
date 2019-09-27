@@ -25,7 +25,7 @@ class VoteSelector extends React.Component {
     }
 
     buildCard (value) {
-        let secondClass = (value === this.state.valueSelected ? ' highlight' : this.state.valueSelected == false ? '' : ' dim')
+        let secondClass = (value === this.state.valueSelected ? 'highlight' : this.state.valueSelected == false ? '' : 'dim')
         return (
             <div className={`voteselector-votecard ${secondClass}`} key={"votecard-" + value} onClick={ () => this.handleCardClick(value)}>
                 <span>{value}</span>
