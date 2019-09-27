@@ -29,7 +29,7 @@ body {
 }
 
 .content {
-    max-width: 1300px;
+    width: 1300px;
     margin: auto;
     padding: 0 10px;
     display: flex;
@@ -46,7 +46,6 @@ body {
 @media only screen and (max-width: 1300px) {
     .content {
         width: 100%;
-        min-width: initial;
     }
 }
 
@@ -94,6 +93,7 @@ input[type="text"], input[type="number"] {
     padding: 10px 20px;
     font-size: 16;
     cursor: pointer;
+    min-width: 90px;
 }
 .button:hover {
     background-color: #414244;
