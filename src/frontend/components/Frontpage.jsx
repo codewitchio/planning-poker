@@ -45,7 +45,7 @@ class Frontpage extends React.Component {
                 </div>
                 <div className="frontpage-create-poll">
                     <label className="name-label">Or create a new poll by entering a name</label>
-                    <input type="name" value={this.state.name} onChange={this.handleNameInputChange} />
+                    <input type="text" value={this.state.name} onChange={this.handleNameInputChange} />
                     <button onClick={this.createPoll}>Go</button>
                 </div>
             </div>

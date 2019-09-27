@@ -1,5 +1,7 @@
 import React from 'react'
 
+import VoteSelector from './VoteSelector.jsx'
+
 var id
 class Poll extends React.Component {
     constructor(props) {
@@ -7,7 +9,13 @@ class Poll extends React.Component {
 
         id = this.props.match.params.id
 
-        this.state = {loading: true, error: false, reveal: false}
+        this.state = {
+            loading: true,
+            error: false,
+            reveal: false,
+            hasVoted: false
+        }
+
         this.getPoll(id)
     }
 
@@ -45,22 +53,22 @@ class Poll extends React.Component {
         } else {
             let votes = []
             for(let v of this.state.votes) {
-                votes.push(<li>{v.value}</li>)
+                votes.push(<li key={v.vote_id}>{v.value}</li>)
             }
             return (
                 <div className="poll">
                     <div className="poll-header">
-                        <span className="poll-id">Poll {id}</span>
-                        <span className="poll-title"> {this.state.title}</span>
+                        
+                        <h3 className="poll-title"> {this.state.title} <span className="subtitle">({id})</span></h3>
                     </div>
                     <div className="poll-votes">
-                        Poll votes go here
                         <ul>
                             {votes}
                         </ul>
                     </div>
                     <div className="poll-input">
-                        Poll entry goes here
+                        <h3>Add vote</h3>
+                        <VoteSelector hasVoted={this.state.hasVoted} />
                     </div>
                 </div>
             )
