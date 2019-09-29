@@ -32,11 +32,18 @@ class VoteResults extends React.Component {
                 <div className="voteresults-cardcontainer">
                     {cards}
                 </div>
-                <div className="voteresults-stats">
-                    Votes: {numOfCards}
-                    <br/>
-                    Average: {this.props.reveal ? average.toFixed(2) : '?'}
-                </div>
+                {
+                    numOfCards > 0 ? (
+                        <div className="voteresults-stats">
+                            Votes: {numOfCards}
+                            <br/>
+                            Average: {this.props.reveal ? average.toFixed(2) : '?'}
+                        </div>
+                    ) : 
+                    <div className="voteresults-stats">
+                        No votes on this poll yet
+                    </div>
+                }
             </React.Fragment>
         )
     }
