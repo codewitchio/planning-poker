@@ -64,9 +64,9 @@ class VoteSelector extends React.Component {
                         {cards}
                     </div>
                     <div className="voteselector-input">
-                        <div className="shadow">
+                        <div className="shadow inputbox">
                             <input type="text" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Enter your name" />
-                            <button className="submit" onClick={this.goClick} disabled={disabled}>Go</button>
+                            <button onClick={this.goClick} disabled={disabled}>Go</button>
                         </div>
                     </div>
                 </React.Fragment>

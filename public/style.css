@@ -61,8 +61,10 @@ h3 {
     box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
-input[type="text"], input[type="number"] {
-    border: 1px solid #e0e0e0;
+/* .inputbox uses a combo of an input and a button */
+.inputbox input[type="text"],
+.inputbox input[type="number"] {
+    border: 1px solid #c7a3ff;
     border-radius: 5px 0 0 5px;
     background-color: #2d2e30;
     color: white;
@@ -70,26 +72,40 @@ input[type="text"], input[type="number"] {
     font-size: 16;
     width: 360px;
 }
-.submit { /* Designed to sit right next to an input field */
-    border: 1px solid #e0e0e0;
+.inputbox button {
+    border: 1px solid #c7a3ff;
     border-left: none;
     border-radius: 0 5px 5px 0;
     background-color: #2d2e30;
-    color: white;
+    color: #c7a3ff;
     padding: 10px 20px;
     font-size: 16;
     cursor: pointer;
 }
-.submit:disabled {
+.inputbox button:disabled {
     color: #6d6d6d;
     cursor: not-allowed;
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 1px #c7a3ff;
+}
 
 .button {
-    border: 1px solid #e0e0e0;
+    border: 1px solid #c7a3ff;
     border-radius: 5px;
     background-color: #2d2e30;
-    color: white;
+    color: #c7a3ff;
     padding: 10px 20px;
     font-size: 16;
     cursor: pointer;
@@ -186,7 +202,7 @@ input[type="text"], input[type="number"] {
 
 .highlight {
     background-color: #414244;
-    border: 1px solid #86ff86;
+    border: 1px solid #c7a3ff;
 }
 .dim {
     position: relative;
