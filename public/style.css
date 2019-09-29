@@ -159,6 +159,27 @@ button:focus {
     font-size: 28;
     /* font-weight: 700; */
 }
+.copy-button {
+    position: relative;
+}
+.copy-button::after {
+    content: "Link copied!";
+    position: absolute;
+    top: -25px;
+    left: 7px;
+    opacity: 0;
+    width: 100px;
+}
+.copy-button-show-popup::after {
+    animation: 2s popup;
+}
+
+@keyframes popup {
+    0% {opacity: 0;}
+    1% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 .poll-votes {
     flex-grow: 4;
 }

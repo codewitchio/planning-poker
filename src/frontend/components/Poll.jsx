@@ -1,10 +1,12 @@
 import React from 'react'
+import copy from 'copy-to-clipboard'
 
 import VoteSelector from './VoteSelector.jsx'
 import VoteResults from './VoteResults.jsx'
 
 var id
 var socket
+var timeout
 class Poll extends React.Component {
     constructor(props) {
         super(props)
@@ -17,6 +19,7 @@ class Poll extends React.Component {
             loading: true,
             error: false,
             reveal: false,
+            showCopyPopup: false,
             myVote: myVote
         }
 
@@ -51,6 +54,7 @@ class Poll extends React.Component {
         this.addVote = this.addVote.bind(this)
         this.deleteVote = this.deleteVote.bind(this)
         this.toggleReveal = this.toggleReveal.bind(this)
+        this.copyToClipboard = this.copyToClipboard.bind(this)
     }
 
     componentWillUnmount() {
@@ -108,7 +112,19 @@ class Poll extends React.Component {
     toggleReveal() {
         this.setState({reveal: !this.state.reveal})
     }
-    
+
+    copyToClipboard() {
+        copy(window.location.origin + '/' + id)
+        if(!timeout) { // Don't worry, I hate this mess too
+            this.setState({showCopyPopup: true}, () => {
+                timeout = window.setTimeout(() => {
+                    timeout = undefined
+                    this.setState({showCopyPopup: false})
+                }, 2000)
+            })       
+        }
+    }
+        
     render () {
         if (this.state.loading) {
             return (
@@ -123,12 +139,13 @@ class Poll extends React.Component {
                 </div>
             )
         } else {
+            let copyButtonClassName = `button shadow copy-button ${this.state.showCopyPopup ? 'copy-button-show-popup' : ''}`
             return (
                 <div className="poll">
                     <div className="poll-header">
                         <button className="button shadow" onClick={this.toggleReveal}>{this.state.reveal ? 'Hide' : 'Show'}</button>
                         <span className="poll-title"> {this.state.title}</span>
-                        <button className="button shadow">Copy Link</button> {/* TODO: Add functionality */}
+                        <button className={copyButtonClassName} onClick={this.copyToClipboard}>Copy Link</button> {/* TODO: Add functionality */}
                     </div>
                     <div className="poll-votes">
                         <VoteResults votes={this.state.votes} myVote={this.state.myVote} reveal={this.state.reveal}/>
