@@ -6,8 +6,9 @@ class VoteSelector extends React.Component {
         super(props)
 
         this.state = {
-            valueSelected: false,
-            nameInput: ''
+            // Set inputs using existing vote if there is one, so it snaps back to what your vote was when you retract it
+            valueSelected: props.myVote ? props.myVote.value : false,
+            nameInput: props.myVote ? props.myVote.name : ''
         }
 
         this.handleCardClick = this.handleCardClick.bind(this)

@@ -18,14 +18,26 @@ class VoteResults extends React.Component {
     }
 
     render () {
+        let sum = 0
         let cards = []
         for(let v of this.props.votes) {
             cards.push(this.buildCard(v))
+            sum += v.value
         }
+        
+        let numOfCards = Object.keys(this.props.votes).length
+        let average = sum / numOfCards
         return (
-            <div className="voteresults-cardcontainer">
-                {cards}
-            </div>
+            <React.Fragment>
+                <div className="voteresults-cardcontainer">
+                    {cards}
+                </div>
+                <div className="voteresults-stats">
+                    Votes: {numOfCards}
+                    <br/>
+                    Average: {this.props.reveal ? average.toFixed(2) : '?'}
+                </div>
+            </React.Fragment>
         )
     }
 }

@@ -33,7 +33,7 @@ class Poll extends React.Component {
             if(data.poll_id == id) {
                 let updatedVotes = this.state.votes.concat({
                     vote_id: data.vote_id,
-                    value: data.value,
+                    value: parseInt(data.value),
                     name: data.name
                 })
                 this.setState({

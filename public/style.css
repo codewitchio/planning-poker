@@ -199,6 +199,10 @@ button:focus {
 .voteresults-cardcombo > span {
     margin: 5px 0;
 }
+.voteresults-stats {
+    text-align: center;
+    margin-top: 30px;
+}
 
 .poll-input {
     flex-grow: 1;
@@ -206,7 +210,7 @@ button:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-top: 1px solid white;
+    border-top: 1px solid #e0e0e0;
 }
 
 .voteselector-cardcontainer {
