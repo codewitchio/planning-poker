@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import Frontpage from './components/Frontpage.jsx'
 import Poll from './components/Poll.jsx'

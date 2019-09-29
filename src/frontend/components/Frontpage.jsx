@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Frontpage extends React.Component {
     constructor(props) {
@@ -43,7 +44,10 @@ class Frontpage extends React.Component {
         return (
             <div className="frontpage">
                 <div className="frontpage-intro">
-                    <a href="https://en.wikipedia.org/wiki/Planning_poker">Planning poker</a> is a technique used when planning, designed to eliminate anchoring bias. Use the fields below to join an existing poll or create a new one!
+                    <a href="https://en.wikipedia.org/wiki/Planning_poker">Planning poker</a> is a technique used when planning a project, designed to eliminate anchoring bias when estimating effort.
+                    <br/>
+                    <br/>
+                    Use the fields below to join an existing poll or create a new one! There's also a <Link to="/1">demo poll</Link> available!
                 </div>
                 <form onSubmit={this.goToPoll} className="frontpage-existing-poll">
                     <div className="shadow inputbox">
