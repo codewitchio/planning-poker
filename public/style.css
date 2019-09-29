@@ -7,6 +7,13 @@ body {
     color: white;
     font-family: 'Roboto', sans-serif;
 }
+body a {
+    color: #c7a3ff;
+    text-decoration: none;
+}
+body a:hover {
+    text-decoration: underline;
+}
 
 #react-app {
     display: flex;
@@ -220,3 +227,12 @@ button:focus {
 }
 
 /* Front page */
+
+.frontpage-intro {
+    max-width: 420px;
+    margin-bottom: 30px;
+}
+.frontpage-credits {
+    max-width: 420px;
+    margin-top: 30px;
+}

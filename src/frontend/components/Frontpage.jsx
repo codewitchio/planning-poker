@@ -37,9 +37,11 @@ class Frontpage extends React.Component {
     render () {
         // TODO: Add Enter click to submit
         return (
-            <div clasname="frontpage">
+            <div className="frontpage">
+                <div className="frontpage-intro">
+                    <a href="https://en.wikipedia.org/wiki/Planning_poker">Planning poker</a> is a technique used when planning, designed to eliminate anchoring bias. Use the fields below to join an existing poll or create a new one!
+                </div>
                 <div className="frontpage-existing-poll">
-                    {/* <label className="code-label">Enter a poll code</label> */}
                     <div className="shadow inputbox">
                         <input type="number" value={this.state.code} onChange={this.handleCodeInputChange} placeholder="Enter a poll code"/>
                         <button onClick={this.goToPoll}>Go</button>
@@ -47,11 +49,15 @@ class Frontpage extends React.Component {
                 </div>
                 <br/>
                 <div className="frontpage-create-poll">
-                    {/* <label className="name-label">Or create a new poll by entering a name</label> */}
                     <div className="shadow inputbox">
                         <input type="text" value={this.state.name} onChange={this.handleNameInputChange} placeholder="Or create a new poll by entering a name" />
                         <button onClick={this.createPoll}>Go</button>
                     </div>
+                </div>
+                <div className="frontpage-credits">
+                    Author: <a href="https://github.com/Aryuko/">Hanna/Aryu</a>
+                    <br/>
+                    Code: <a href="https://github.com/Aryuko/planning-poker">GitHub</a>
                 </div>
             </div>
         )
