@@ -29,11 +29,9 @@ class Frontpage extends React.Component {
         e.preventDefault()
         return fetch('/api/poll/create/' + this.state.name).then((response) => {
             response.json().then((json) => {
+                console.log('createPoll:', json)
                 if(json.success) {
-                    console.log('createPoll:', json)
                     this.props.history.push('/' + json.data.poll_id)
-                } else {
-                    console.log('createPoll:', json)
                 }
             })
         })

@@ -65,8 +65,8 @@ class Poll extends React.Component {
     getPoll() {
         return fetch(`/api/poll/${id}`).then((response) => {
             response.json().then((json) => {
+                console.log('getPoll:', json)
                 if(json.success) {
-                    console.log('getPoll:', json)
                     this.setState({
                         loading: false,
                         title: json.data.name,
@@ -74,7 +74,6 @@ class Poll extends React.Component {
                     })
                 } else {
                     this.setState({loading: false, error: true})
-                    console.log('getPoll:', json)
                 }
             })
         })
@@ -83,13 +82,11 @@ class Poll extends React.Component {
     addVote(value, name) {
         fetch(`/api/poll/vote/${id}/${value}/${name}`).then((response) => {
             response.json().then((json) => {
+                console.log('addVote:', json)
                 if(json.success) {
-                    console.log('addVote:', json)
                     let myVote = {vote_id: json.data.vote_id, value: value, name: name}
                     this.setState({myVote: myVote})
                     window.localStorage.setItem('myVote-' + id, JSON.stringify(myVote))
-                } else {
-                    console.log('addVote:', json)
                 }
             })
         })
@@ -98,12 +95,10 @@ class Poll extends React.Component {
     deleteVote(vote_id) {
         fetch(`/api/poll/delete_vote/${vote_id}`).then((response) => {
             response.json().then((json) => {
+                console.log('deleteVote:', json)
                 if(json.success) {
-                    console.log('deleteVote:', json)
                     this.setState({myVote: false})
                     window.localStorage.removeItem('myVote-' + id)
-                } else {
-                    console.log('deleteVote:', json)
                 }
             })
         })
