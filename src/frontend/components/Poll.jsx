@@ -11,18 +11,20 @@ class Poll extends React.Component {
 
         id = this.props.match.params.id
 
+        // Get info about your own vote status from from localstorage
+        let myVote = window.localStorage.getItem('myVote-' + id) ? JSON.parse(window.localStorage.getItem('myVote-' + id)) : false
         this.state = {
             loading: true,
             error: false,
             reveal: false,
-            myVote: false
+            myVote: myVote
         }
 
         this.getPoll()
         
+        // Open persistent connection to server
         socket = io()
         socket.open()
-
         // Listens for vote additions to update result list
         socket.on('addVote', (data) => {
             if(data.poll_id == id) {
@@ -52,6 +54,7 @@ class Poll extends React.Component {
     }
 
     componentWillUnmount() {
+        // Close connection to server
         socket.close()
     }
 
@@ -78,7 +81,9 @@ class Poll extends React.Component {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
-                    this.setState({myVote: {vote_id: json.data.vote_id, value: value, name: name}})
+                    let myVote = {vote_id: json.data.vote_id, value: value, name: name}
+                    this.setState({myVote: myVote})
+                    window.localStorage.setItem('myVote-' + id, JSON.stringify(myVote))
                 } else {
                     console.log(json)
                 }
@@ -86,12 +91,13 @@ class Poll extends React.Component {
         })
     }
 
-    deleteVote(id) {
-        fetch(`/api/poll/delete_vote/${id}`).then((response) => {
+    deleteVote(vote_id) {
+        fetch(`/api/poll/delete_vote/${vote_id}`).then((response) => {
             response.json().then((json) => {
                 if(json.success) {
                     console.log(json)
                     this.setState({myVote: false})
+                    window.localStorage.removeItem('myVote-' + id)
                 } else {
                     console.log(json)
                 }
