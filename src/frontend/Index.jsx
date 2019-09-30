@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom'
 
 import Frontpage from './components/Frontpage.jsx'
 import Poll from './components/Poll.jsx'
@@ -18,6 +18,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/" render={(props) => <Frontpage {...props} />} />
                         <Route exact path="/:id(\d+)" render={(props) => <Poll {...props} />} />
+                        <Redirect from="*" to="/" />
                     </Switch>
                 </div>
             </React.Fragment>

@@ -6,6 +6,7 @@ class Database {
         this.setupTables()
     }
 
+    // Creates tables in database if they do not already exist
     setupTables() {
         db.serialize(() => {
             db.run('CREATE TABLE IF NOT EXISTS poll (poll_id INTEGER PRIMARY KEY, name TEXT)')
@@ -18,18 +19,27 @@ class Database {
         })
     }
 
+    // Inserts a demo poll and some votes associated with it into the database
     insertDemoData() {
         db.run(`INSERT INTO poll(name) VALUES('Demo poll')`, function (err) {
             if(err) { console.log(err.message) }
             else {
                 db.run(`INSERT INTO poll_vote(poll_id, value, name) VALUES(1, 1, 'Hanna'), (1, 2, 'Joakim'),  (1, 5, 'Mark'), (1, 13, 'Max')`, function (err) {
-                        if(err) { console.log(err.message) }
-                        else { console.log('Successfully inserted demo poll into database')}
+                    if(err) { console.log(err.message) }
+                    else { console.log('Successfully inserted demo poll into database')}
                 })
             }
         })
     }
 
+    /**
+     * Gets poll info and its associated votes based on given id, 
+     * returning data through the given callback function.
+     * Returns false if unsuccessful.
+     * 
+     * @param {int} id 
+     * @param {function} callback 
+     */
     getPoll(id, callback) {
         db.serialize(() => {
             db.get(`SELECT poll_id, name FROM poll WHERE poll_id = ${id}`, function (err, poll) {
@@ -53,6 +63,14 @@ class Database {
         })
     }
 
+    /**
+     * Creates a poll with the given name, and returns its
+     * id and info through the given callback function on success.
+     * Returns false if unsuccessful.
+     * 
+     * @param {string} name 
+     * @param {function} callback 
+     */
     createPoll(name, callback) {
         db.serialize(() => {
             db.run(`INSERT INTO poll(name) VALUES('${name}')`, function (err) {
@@ -68,6 +86,16 @@ class Database {
         })
     }
 
+    /**
+     * Adds a vote to the given poll, using given value and name.
+     * Returns vote info through the given callback function if successful.
+     * Returns false if unsucessful.
+     * 
+     * @param {int} poll_id 
+     * @param {int} value 
+     * @param {string} name 
+     * @param {function} callback 
+     */
     addVote(poll_id, value, name, callback) {
         db.serialize(() => {
             db.run(`INSERT INTO poll_vote(poll_id, value, name) VALUES(${poll_id}, ${value}, '${name}')`, function (err) {
@@ -85,6 +113,14 @@ class Database {
         })
     }
 
+    /**
+     * Deletes a vote with the given id. Returns vote id
+     * through the given callback function if successful.
+     * Returns false if unsuccessful.
+     * 
+     * @param {int} vote_id 
+     * @param {function} callback 
+     */
     deleteVote(vote_id, callback) {
         db.serialize(() => {
             db.run(`DELETE FROM poll_vote WHERE vote_id = ${vote_id}`, function (err) {
