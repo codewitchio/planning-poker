@@ -6,11 +6,17 @@ class VoteResults extends React.Component {
     }
 
     buildCard (vote) {
-        let secondClass = (this.props.myVote === false ? '' :( this.props.myVote.vote_id == vote.vote_id ? 'highlight' : ''))
+        let highlight = (this.props.myVote === false ? '' :( this.props.myVote.vote_id == vote.vote_id ? 'highlight' : ''))
+        let reveal = this.props.reveal ? 'reveal' : ''
         return (
             <div className="voteresults-cardcombo" key={"resultcard-" + vote.vote_id}>
-                <div className={`card shadow ${secondClass}`}>
-                    <span>{this.props.reveal ? vote.value : '?'}</span>
+                <div className={`voteresults-flipcontainer shadow ${reveal}`}>
+                    <div className={`voteresults-cardfront card ${highlight}`}>
+                        <span>{'?'}</span>
+                    </div>
+                    <div className={`voteresults-cardback card ${highlight}`}>
+                        <span>{vote.value}</span>
+                    </div>
                 </div>
                 <span>{vote.name}</span>
             </div>

@@ -199,6 +199,26 @@ button:focus {
 .voteresults-cardcombo > span {
     margin: 5px 0;
 }
+.voteresults-flipcontainer {
+    position: relative;
+    height: 150px;
+    width: 100px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+.voteresults-cardfront, .voteresults-cardback {
+    position: absolute;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.voteresults-cardback {
+    transform: rotateY(180deg);
+}
+.reveal {
+    transform: rotateY(180deg);
+}
+
 .voteresults-stats {
     text-align: center;
     margin: 30px 0;
