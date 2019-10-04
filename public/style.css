@@ -198,12 +198,13 @@ button:focus {
 }
 .voteresults-cardcombo > span {
     margin: 5px 0;
+    z-index: 2;
 }
 .voteresults-flipcontainer {
     position: relative;
     height: 150px;
     width: 100px;
-    transition: transform 0.8s;
+    transition: transform 0.4s;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
 }
