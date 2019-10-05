@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class VoteResults extends React.Component {
     constructor(props) {
@@ -35,9 +36,14 @@ class VoteResults extends React.Component {
         let average = sum / numOfCards
         return (
             <React.Fragment>
-                <div className="voteresults-cardcontainer">
+                <ReactCSSTransitionGroup
+                    className="voteresults-cardcontainer"
+                    transitionName="card"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                >
                     {cards}
-                </div>
+                </ReactCSSTransitionGroup>
                 {
                     numOfCards > 0 ? (
                         <div className="voteresults-stats">

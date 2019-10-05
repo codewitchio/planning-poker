@@ -171,12 +171,12 @@ button:focus {
     width: 100px;
 }
 .copy-button-show-popup::after {
-    animation: 2s popup;
+    animation: 2.5s popup;
 }
 
 @keyframes popup {
-    0% {opacity: 0;}
-    1% {opacity: 1;}
+    0% {opacity: 1;}
+    30% {opacity: 1;}
     100% {opacity: 0;}
 }
 
@@ -189,12 +189,14 @@ button:focus {
     justify-content: space-evenly;
     width: 100%;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 .voteresults-cardcombo {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
+    flex-grow: 1;
 }
 .voteresults-cardcombo > span {
     margin: 8px 0;
@@ -281,4 +283,31 @@ button:focus {
 .frontpage-credits {
     max-width: 420px;
     margin-top: 30px;
+}
+
+/* Animations */
+.card-enter {
+    opacity: 0.01;
+    flex-grow: 0.01;
+    width: 1px;
+}
+
+.card-enter.card-enter-active {
+    opacity: 1;
+    flex-grow: 1;
+    width: 100px;
+    transition: all 500ms ease-in-out;
+}
+
+.card-leave {
+    opacity: 1;
+    flex-grow: 1;
+    width: 100px;
+}
+
+.card-leave.card-leave-active {
+    opacity: 0.01;
+    flex-grow: 0.01;
+    width: 1px;
+    transition: all 300ms ease-in-out;
 }

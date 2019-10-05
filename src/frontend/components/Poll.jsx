@@ -115,7 +115,7 @@ class Poll extends React.Component {
                 timeout = window.setTimeout(() => {
                     timeout = undefined
                     this.setState({showCopyPopup: false})
-                }, 2000)
+                }, 2500)
             })       
         }
     }
