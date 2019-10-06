@@ -1,8 +1,12 @@
 # Planning Poker
-This is a small application written as part of a code test. The idea is that it will allow people to vote on a cost estimate for the project they're working on, done anonymously to eliminate anchoring bias. 
+This is a small application written as part of a code test. It is a complete system for making and sharing online polls, voting in them, and seeing updates in real time. [Planning poker](https://en.wikipedia.org/wiki/Planning_poker) is a technique used when planning a project, designed to eliminate anchoring bias when estimating effort.
+
+Primarily tested on Google Chrome.
+
+![demo](https://thumbs.gfycat.com/OffensiveLiquidAbyssiniancat-size_restricted.gif)
 
 ## Prerequisites
-1. Install Node.js (v10 or above) with npm 
+1. Install Node.js (v10 or above) including npm 
 
 ## Installation
 1. Clone the repository
