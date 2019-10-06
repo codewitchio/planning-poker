@@ -42,7 +42,7 @@ class Database {
      */
     getPoll(id, callback) {
         db.serialize(() => {
-            db.get(`SELECT poll_id, name FROM poll WHERE poll_id = ${id}`, function (err, poll) {
+            db.get('SELECT poll_id, name FROM poll WHERE poll_id = ?', [id], function (err, poll) {
                 if(err) { console.log(err.message) }
                 else if(poll) {
                     db.all(`SELECT vote_id, value, name FROM poll_vote WHERE poll_id = ${id}`, function (err, votes) {
@@ -73,7 +73,7 @@ class Database {
      */
     createPoll(name, callback) {
         db.serialize(() => {
-            db.run(`INSERT INTO poll(name) VALUES('${name}')`, function (err) {
+            db.run('INSERT INTO poll(name) VALUES(?)', [name], function (err) {
                 if(err) { console.log(err.message) }
                 else if (this.lastID) {
                     console.log(`poll '${name}' with id ${this.lastID} created`)
@@ -98,7 +98,7 @@ class Database {
      */
     addVote(poll_id, value, name, callback) {
         db.serialize(() => {
-            db.run(`INSERT INTO poll_vote(poll_id, value, name) VALUES(${poll_id}, ${value}, '${name}')`, function (err) {
+            db.run('INSERT INTO poll_vote(poll_id, value, name) VALUES(?, ?, ?)', [poll_id, value, name], function (err) {
                 if(err) { console.log(err.message) }
                 else if (this.lastID) {
                     console.log(`vote for poll ${poll_id} with value '${value}', name '${name}', and id ${this.lastID} added`)
@@ -123,7 +123,7 @@ class Database {
      */
     deleteVote(vote_id, callback) {
         db.serialize(() => {
-            db.run(`DELETE FROM poll_vote WHERE vote_id = ${vote_id}`, function (err) {
+            db.run('DELETE FROM poll_vote WHERE vote_id = ?', [vote_id], function (err) {
                 if(err) { console.log(err.message) }
                 else if (this.changes) {
                     console.log(`vote with id ${vote_id} deleted`)
