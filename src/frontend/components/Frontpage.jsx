@@ -27,7 +27,8 @@ class Frontpage extends React.Component {
 
     createPoll(e) {
         e.preventDefault()
-        return fetch('/api/poll/create/' + this.state.name).then((response) => {
+        name = this.state.name.replace(/\//g, '')
+        return fetch(encodeURI(`/api/poll/create/${name}`)).then((response) => {
             response.json().then((json) => {
                 console.log('createPoll:', json)
                 if(json.success) {

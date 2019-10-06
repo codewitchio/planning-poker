@@ -63,7 +63,7 @@ class Poll extends React.Component {
     }
 
     getPoll() {
-        return fetch(`/api/poll/${id}`).then((response) => {
+        return fetch(encodeURI(`/api/poll/${id}`)).then((response) => {
             response.json().then((json) => {
                 console.log('getPoll:', json)
                 if(json.success) {
@@ -80,7 +80,8 @@ class Poll extends React.Component {
     }
 
     addVote(value, name) {
-        fetch(`/api/poll/vote/${id}/${value}/${name}`).then((response) => {
+        name = name.replace(/\//g, '')
+        fetch(encodeURI(`/api/poll/vote/${id}/${value}/${name}`)).then((response) => {
             response.json().then((json) => {
                 console.log('addVote:', json)
                 if(json.success) {
@@ -93,7 +94,7 @@ class Poll extends React.Component {
     }
 
     deleteVote(vote_id) {
-        fetch(`/api/poll/delete_vote/${vote_id}`).then((response) => {
+        fetch(encodeURI(`/api/poll/delete_vote/${vote_id}`)).then((response) => {
             response.json().then((json) => {
                 console.log('deleteVote:', json)
                 if(json.success) {
@@ -110,7 +111,9 @@ class Poll extends React.Component {
 
     copyToClipboard() {
         copy(window.location.origin + '/' + id)
-        if(!timeout) { // Don't worry, I hate this mess too
+        // Set state to show "Link copied!" popup, and unset after the animation finishes
+        // Don't worry, I hate this mess too
+        if(!timeout) {
             this.setState({showCopyPopup: true}, () => {
                 timeout = window.setTimeout(() => {
                     timeout = undefined
