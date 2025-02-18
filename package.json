@@ -33,6 +33,6 @@
     "socket.io": "^2.3.0",
     "sqlite3": "^4.1.0",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.12"
   }
 }
